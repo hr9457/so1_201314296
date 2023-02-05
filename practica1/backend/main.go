@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -9,9 +10,13 @@ import (
 
 func main() {
 
-	r := mux.NewRouter()
+	port := ":4000"
 
-	r.HandleFunc("/", routes.Hello)
+	route := mux.NewRouter()
 
-	http.ListenAndServe(":4000", r)
+	// route principal
+	routes.Hello(route)
+
+	log.Printf("Server listening on port %v", port)
+	http.ListenAndServe(port, route)
 }

@@ -1,15 +1,18 @@
 package routes
 
-import "net/http"
+import (
+	"net/http"
 
-func Hello(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello Cal!!!"))
+	"github.com/gorilla/mux"
+	"github.com/hr9457/so1/controller"
+)
+
+func Hello(route *mux.Router) {
+
+	// route de prueba de saludo
+	route.HandleFunc("/saludo", func(w http.ResponseWriter, r *http.Request) {
+		var response = controller.HelloWorld()
+		w.Write([]byte(response))
+	}).Methods("GET")
+
 }
-
-func Suma(w http.ResponseWriter, r *http.Request) {}
-
-func Resta(w http.ResponseWriter, r *http.Request) {}
-
-func Multiplicacion(w http.ResponseWriter, r *http.Request) {}
-
-func Division(w http.ResponseWriter, r *http.Request) {}

@@ -15,8 +15,9 @@ func main() {
 	route := mux.NewRouter()
 
 	// route principal
-	routes.Hello(route)
+	routes.RoutesCalculadora(route)
 
+	// Escucha del server
 	log.Printf("Server listening on port %v", port)
 	http.ListenAndServe(port, route)
 }

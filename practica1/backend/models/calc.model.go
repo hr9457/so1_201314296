@@ -6,7 +6,7 @@ type Operacion struct {
 	Value2 int `json:"value2"`
 }
 
-type ResponseOperation struct {
-	Result  interface{}
-	Message string
+type ResponseOperacion struct {
+	Result  int    `json:"result"`
+	Message string `json:"message"`
 }

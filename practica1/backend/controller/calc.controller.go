@@ -5,6 +5,7 @@ import (
 
 	"github.com/hr9457/so1/database"
 	"github.com/hr9457/so1/models"
+	"github.com/hr9457/so1/util"
 )
 
 // func de prueba
@@ -18,7 +19,7 @@ func Suma(op models.Operacion) models.ResponseOperacion {
 	response.Result = op.Value1 + op.Value2
 
 	// insert to database
-	insertData("suma", response.Result)
+	insertData(op.Value1, op.Value2, "+", response.Result, util.GetDate())
 
 	return response
 }
@@ -28,7 +29,7 @@ func Resta(op models.Operacion) models.ResponseOperacion {
 	response.Result = op.Value1 - op.Value2
 
 	// insert to database
-	insertData("resta", response.Result)
+	insertData(op.Value1, op.Value2, "-", response.Result, util.GetDate())
 
 	return response
 }
@@ -38,7 +39,7 @@ func Multiplicacion(op models.Operacion) models.ResponseOperacion {
 	response.Result = op.Value1 * op.Value2
 
 	// insert to database
-	insertData("multiplicacion", response.Result)
+	insertData(op.Value1, op.Value2, "*", response.Result, util.GetDate())
 
 	return response
 }
@@ -52,7 +53,7 @@ func Division(op models.Operacion) models.ResponseOperacion {
 		response.Result = value1 / value2
 
 		// insert to database
-		insertData("division", response.Result)
+		insertData(value1, value2, "/", response.Result, util.GetDate())
 
 		return response
 	}
@@ -60,14 +61,14 @@ func Division(op models.Operacion) models.ResponseOperacion {
 	// Err division
 	response.Message = "Error division por 0"
 	// insert to database
-	insertData("Error", response.Result)
+	insertData(value1, value2, "Error", response.Result, util.GetDate())
 	return response
 }
 
-func insertData(tipo string, response int) {
+func insertData(num1 int, num2 int, op string, response int, fecha string) {
 	db, err := database.GetDB()
 	if err != nil {
 		log.Fatal("Error conecction database")
 	}
-	_, err = db.Exec("INSERT INTO history (tipo, resultado) VALUES(?,?)", tipo, response)
+	_, err = db.Exec("INSERT INTO historial (numero1, numero2, operador, resultado, fecha) VALUES(?,?,?,?,?)", num1, num2, op, response, fecha)
 }

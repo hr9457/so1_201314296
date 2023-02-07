@@ -7,9 +7,10 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/hr9457/so1/controller"
-	"github.com/hr9457/so1/models"
+	"github.com/hr9457/so1/util"
 )
 
+// control routes calc
 func RoutesCalculadora(route *mux.Router) {
 
 	// route de prueba de saludo
@@ -25,54 +26,44 @@ func RoutesCalculadora(route *mux.Router) {
 
 	// route suma
 	route.HandleFunc("/suma", func(w http.ResponseWriter, r *http.Request) {
-		// model
-		var op models.Operacion
-		json.NewDecoder(r.Body).Decode(&op)
-
 		// response
-		response := controller.Suma(op)
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(response)
-
+		respondWhitSucces(controller.Suma(util.DestructuringData(*r)), w)
 	}).Methods("GET")
 
 	// Resta
 	route.HandleFunc("/resta", func(w http.ResponseWriter, r *http.Request) {
-		// model
-		var op models.Operacion
-		json.NewDecoder(r.Body).Decode(&op)
-
 		// response
-		response := controller.Resta(op)
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(response)
-
+		respondWhitSucces(controller.Resta(util.DestructuringData(*r)), w)
 	}).Methods("GET")
 
 	// Multiplicacion
 	route.HandleFunc("/multiplicacion", func(w http.ResponseWriter, r *http.Request) {
-		// model
-		var op models.Operacion
-		json.NewDecoder(r.Body).Decode(&op)
-
 		// response
-		response := controller.Multiplicacion(op)
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(response)
-
+		respondWhitSucces(controller.Multiplicacion(util.DestructuringData(*r)), w)
 	}).Methods("GET")
 
 	// Division
 	route.HandleFunc("/division", func(w http.ResponseWriter, r *http.Request) {
-		// model
-		var op models.Operacion
-		json.NewDecoder(r.Body).Decode(&op)
-
 		// response
-		response := controller.Division(op)
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(response)
-
+		respondWhitSucces(controller.Division(util.DestructuringData(*r)), w)
 	}).Methods("GET")
 
+	// historial logs
+	route.HandleFunc("/historial", func(w http.ResponseWriter, r *http.Request) {
+		respondWhitSucces(controller.GetLogs(), w)
+	}).Methods("GET")
+}
+
+// func enable control cors from frontend
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Acces-Control-Allow-Origin", "*")
+}
+
+// func response succes api
+func respondWhitSucces(data interface{}, w http.ResponseWriter) {
+	// enable cors
+	enableCors(&w)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(data)
 }

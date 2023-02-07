@@ -1,6 +1,7 @@
 package database
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 
@@ -10,8 +11,9 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func GetDB() string {
+func GetDB() (*sql.DB, error) {
 
+	// variables de entorno
 	var err = godotenv.Load("./.env")
 
 	// verificcion de error con la conexion a db
@@ -20,12 +22,26 @@ func GetDB() string {
 	}
 
 	var connectionString = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		os.Getenv("user"),
-		os.Getenv("pass"),
-		os.Getenv("host"),
-		os.Getenv("port"),
-		os.Getenv("db_name"))
-	return connectionString
+		os.Getenv("userDB"),
+		os.Getenv("passDB"),
+		os.Getenv("hostDB"),
+		os.Getenv("portDB"),
+		os.Getenv("nameDB"))
 
-	// return sql.Open("mysql", connectionString)
+	return sql.Open("mysql", connectionString)
+}
+
+func TestConnection() {
+	db, err := GetDB()
+	if err != nil {
+		log.Printf("Error with database DBSO1" + err.Error())
+		return
+	} else {
+		err = db.Ping()
+		if err != nil {
+			log.Printf("Error making connection to DB. Please check credentials. The error is: " + err.Error())
+			return
+		}
+		log.Printf("Connect with database DBSO1")
+	}
 }

@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <div className="contenedor-calculadora">
-        <Pantalla />
+        <Pantalla input={input}/>
 
         <div className="fila">
           <Boton manejarClic={agregarInput}>1</Boton>

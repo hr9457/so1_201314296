@@ -13,6 +13,7 @@ import (
 func DestructuringData(r http.Request) models.Operacion {
 	var op models.Operacion
 	json.NewDecoder(r.Body).Decode(&op)
+	// fmt.Println(r.Body)
 	return op
 }
 

@@ -6,6 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/hr9457/so1/database"
+	"github.com/hr9457/so1/middleware"
 	"github.com/hr9457/so1/routes"
 )
 
@@ -16,10 +17,13 @@ func main() {
 
 	// route general
 	route := mux.NewRouter()
+	middleware.EnableCORS(route)
 	// Index routes
-	prefix := route.PathPrefix("/api").Subrouter()
+	// prefix := route.PathPrefix("/api").Subrouter()
+	// prefix := route.PathPrefix("/api").Subrouter()
+
 	// route principal
-	routes.RoutesCalculadora(prefix)
+	routes.RoutesCalculadora(route)
 
 	// prueba de db
 	database.TestConnection()

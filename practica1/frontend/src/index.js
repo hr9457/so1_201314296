@@ -6,14 +6,9 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-function Greeting() {
-  const name = "SOPES1 - CALCULADORA";
-  return <h1>{name}</h1>;
-}
 
 root.render(
   <>
-    <Greeting></Greeting>
     <App/>
   </>
 );

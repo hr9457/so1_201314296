@@ -17,7 +17,7 @@ func HelloWorld() string {
 func Suma(op models.Operacion) models.ResponseOperacion {
 	var response models.ResponseOperacion
 	response.Result = op.Value1 + op.Value2
-
+	// fmt.Println(response)
 	// insert to database
 	insertData(op.Value1, op.Value2, "+", response.Result, util.GetDate())
 

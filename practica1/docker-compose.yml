@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: MySQLSOPES1
+    image: mysql
+    restart: always
+    volumes:
+      - ../../data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+
+    networks:
+      - practica1
+
+
+  backend:
+    container_name: backend
+    image: hr9457/backend_practica1_201314296
+    restart: always
+    environment:
+      userDB : "root"
+      passDB : "root"
+      hostDB : "192.168.0.10"
+      portDB : 3306
+      nameDB : "SO1"
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mysql
+
+    networks:
+      - practica1
+
+
+  frontend:
+    container_name: frontend
+    image: hr9457/frontend_practica1_201314296
+    restart: always
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - backend
+
+    networks:
+      - practica1
+
+
+networks:
+  practica1:
+    name: practica1
+    driver: bridge

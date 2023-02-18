@@ -1,4 +1,7 @@
-const URL_API = `http://localhost:4000`;
+const URL_API = `http://192.168.0.10:4000`;
+// const URL_API = `${process.env.URL_API}`;
+
+
 
 const suma = async (data) => {
   const response = await fetch(`${URL_API}/suma`, {

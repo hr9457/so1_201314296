@@ -54,6 +54,8 @@ services:
     image: hr9457/script_practica1_201314296
     # restart: always
 
+    command: tail -F anything
+
     depends_on:
       - mysql
       - backend

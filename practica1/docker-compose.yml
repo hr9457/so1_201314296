@@ -49,6 +49,20 @@ services:
       - practica1
 
 
+  script:
+    container_name: script
+    image: hr9457/script_practica1_201314296
+    # restart: always
+
+    depends_on:
+      - mysql
+      - backend
+      - frontend
+
+    networks:
+      - practica1
+
+
 networks:
   practica1:
     name: practica1

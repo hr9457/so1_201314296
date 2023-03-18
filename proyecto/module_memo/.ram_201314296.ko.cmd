@@ -1,0 +1,1 @@
+cmd_/home/hector/Desktop/sopes/module_memo/ram_201314296.ko := ld -r  -m elf_x86_64 -z noexecstack   --build-id=sha1  -T scripts/module.lds -o /home/hector/Desktop/sopes/module_memo/ram_201314296.ko /home/hector/Desktop/sopes/module_memo/ram_201314296.o /home/hector/Desktop/sopes/module_memo/ram_201314296.mod.o;  true

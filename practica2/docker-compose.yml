@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    # image: hr9457/back_go
+    build: ./Backend_go
+    restart: always
+    environment:
+      userDB : "root"
+      passDB : "root"
+      hostDB : "35.202.117.207"
+      portDB : 3306
+      nameDB : "proyecto"      
+      
+                
+
+    ports:
+      - "4000:4000"
+    # depends_on:
+    #   - mysql
+
+    # networks:
+    #   - practica1
+
+
+  # frontend:
+  #   container_name: frontend
+  #   build: ./frontend
+  #   # image: hr9457/frontend_practica1_201314296
+  #   restart: always
+  #   environment:
+  #     REACT_APP_API_URL : "http://localhost:5000"
+
+  #   ports:
+  #     - "3000:3000"
+
+  #   depends_on:
+  #     - backend
+
+  #   networks:
+  #     - practica1
+
+
+# networks:
+#   practica1:
+#     name: practica1
+#     driver: bridge

@@ -1,0 +1,1 @@
+cmd_/home/hector/Desktop/sopes/modulo/Module.symvers := sed 's/\.ko$$/\.o/' /home/hector/Desktop/sopes/modulo/modules.order | scripts/mod/modpost -m -a  -o /home/hector/Desktop/sopes/modulo/Module.symvers -e -i Module.symvers   -T -

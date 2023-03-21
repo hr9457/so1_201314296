@@ -1,1 +1,0 @@
-cmd_/home/hector/Desktop/sopes/module_memo/modules.order := {   echo /home/hector/Desktop/sopes/module_memo/ram_201314296.ko; :; } | awk '!x[$$0]++' - > /home/hector/Desktop/sopes/module_memo/modules.order

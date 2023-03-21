@@ -1,0 +1,1 @@
+cmd_/home/hector/Desktop/sopes/modulo/modulo.ko := ld -r  -m elf_x86_64 -z noexecstack   --build-id=sha1  -T scripts/module.lds -o /home/hector/Desktop/sopes/modulo/modulo.ko /home/hector/Desktop/sopes/modulo/modulo.o /home/hector/Desktop/sopes/modulo/modulo.mod.o;  true

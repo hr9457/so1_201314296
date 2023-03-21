@@ -1,1 +1,0 @@
-cmd_/home/hector/Desktop/sopes/module_cpu/modules.order := {   echo /home/hector/Desktop/sopes/module_cpu/cpu_201314296.ko; :; } | awk '!x[$$0]++' - > /home/hector/Desktop/sopes/module_cpu/modules.order

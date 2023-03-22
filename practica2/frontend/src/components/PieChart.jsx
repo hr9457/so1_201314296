@@ -37,7 +37,8 @@ const PieChart = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-    });
+    }).catch(err => console.log(`error api ${process.env.REACT_APP_API_URL}`));
+
     const responseJson = await response.json();
     
     // actualizaciones
